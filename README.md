@@ -529,3 +529,46 @@ new 키워드로 만들어지 obejct들은 instanceof키워드를 붙여서 부�
 ```
 
 비슷한 object들이 들어오면 literal type으로 narrowing 가능
+
+## never 타입
+
+```
+function 함수() :never{}
+```
+
+- 조건 1: 절대 return을 하지 않아야 함
+- 조건 2: 함수 실행이 끝나지 않아야 함(endpoint가 없어야 함)
+
+```
+function 함수1() :never{
+  while(true){}
+}
+function 함수2() :never{
+  throw new Error('에러')
+}
+```
+
+무언가 return하지 않고 끝나지도 않는 함수를 표현하고 싶을 때 never타입을 사용하면 됨.
+하지만 그럴일은 거의 없으므로 쓸 일 이 없다.
+
+### 파라미터가 never타입이 되는 경우
+
+```
+function 함수(p:string){
+  if(typeof p === 'string'){
+    // 가능
+  }else{
+    // 불가능 -> p는 never로 변함
+  }
+}
+```
+
+### 자동으로 never타입을 가지는 경우
+
+```
+let 함수 = function(){
+  throw new Error();
+}
+```
+
+- 함수표현식이 아무것도 return하지 않고 끝나지도 않는 경우 never타입이 자동으로 return타입으로 할당됨
