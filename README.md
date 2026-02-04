@@ -478,4 +478,54 @@ let 함수 :FuncType = function(a){
     console.log(student, age);
   }
 ```
-# ts-basic
+
+## Narrowing 더 알아보기
+
+### null & undefined 체크
+
+```
+  if(a && typeof strs="string"){}
+  if( a != null ) // null, undefined 거를 수 있음
+```
+
+a가 undefined면 if문이 실행되지 않음
+
+### in 연산자로 object자료 narrowing
+
+```
+  type Fish = { swim: string };
+  type Bird = { fly: string };
+
+  function animalMove(animal: Fish | Bird): void {
+    if ("swim" in animal) {
+      console.log(`Fish can swim: ${animal.swim}`);
+    } else if ("fly" in animal) {
+      console.log(`Bird can fly: ${animal.fly}`);
+    }
+  }
+```
+
+### class로부터 생산된 object라면 instanceof로 narrowing
+
+```
+  let 날짜 = new Date();
+  if (날짜 instanceof Date) {
+    console.log(날짜.getDate());
+  }
+```
+
+new 키워드로 만들어지 obejct들은 instanceof키워드를 붙여서 부모클래스가 누군지 검사할 수 있음
+
+### literal type으로 narrowing
+
+```
+  type Car = { wheel: "4개" };
+  type Bike = { wheel: "2개" };
+  function move(x: Car | Bike) {
+    if (x.wheel === "4개") {
+      console.log("Car move");
+    }
+  }
+```
+
+비슷한 object들이 들어오면 literal type으로 narrowing 가능
