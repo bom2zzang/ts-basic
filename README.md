@@ -572,3 +572,12 @@ let 함수 = function(){
 ```
 
 - 함수표현식이 아무것도 return하지 않고 끝나지도 않는 경우 never타입이 자동으로 return타입으로 할당됨
+
+## public, private 키워드
+
+타입스크립트는 class안에서 public키워드를 사용할 수 있음
+원하는 속성 왼쪽에 붙이면 그 속성은 아무데나 수정이 가능함
+
+- public이 붙은 속성은 자식 object들이 마음대로 사용하고 수정가능함
+- public 키워드는 class 내의 prototype 함수에도 붙일 수 있음
+- private 키워드를 붙이면 외부에서 수정이 불가능함 - 오직 class 안에서만 수정이 가능함
